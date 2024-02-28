@@ -223,12 +223,18 @@ app.get("/detailMovie/:movieId", (req, res) => {
       return;
     }
 
+    // Check if Synopsis is missing or not updated
+    if (movie.Synopsis === null) {
+      movie.Synopsis = "There is no information yet.";
+  }
+
     res.render("detailMovie.ejs", {
       loggedInUsername: req.session.loggedInUsername || "",
       movie,
     });
   });
 });
+
 
 // Search Movies
 
