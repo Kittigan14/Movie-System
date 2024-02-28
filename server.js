@@ -280,7 +280,9 @@ app.post("/logout", (req, res) => {
 
 // Forget password & UPDATE PASSWORD
 app.get("/forgetPassword", (req, res) => {
-  res.render("forgetPassword.ejs");
+  res.render("forgetPassword.ejs" , {
+    loggedInUsername: req.session.loggedInUsername || "",
+  });
 });
 
 // Update Password

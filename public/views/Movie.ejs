@@ -1,129 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../Css/style.css" />
-    <title>Movie Minds Hub</title>
-    <link rel="icon" type="image/x-icon" href="./Icon/Icon-WebPage.png" />
-  </head>
 
-  <body>
-    <!-- Nav Bar Menu -->
-    <div class="navbar">
-      <!-- Menu -->
-      <ul class="navbar-menu">
-        <li><a href="/" class="nav-item"> Home </a></li>
-        <li><a href="/movies" class="nav-item"> Movie </a></li>
-        <li><a href="/reviews" class="nav-item"> Review </a></li>
-        <li><a href="/contact" class="nav-item"> Contact </a></li>
-      </ul>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../Css/style.css" />
+  <script src="../Script/Dark-Mode.js"></script>
+  <title>Movie Minds Hub</title>
+  <link rel="icon" type="image/x-icon" href="../Icon/Icon-WebPage-2.png" />
+</head>
 
-      <!-- Logo Webpage -->
-      <div class="navbar-logo">
-        <img src="../Icon/Logo-WebPage.png" width="150px" height="150px" />
-      </div>
+<body>
+  <!-- Nav Bar Menu -->
+  <div class="navbar">
+    <!-- Menu -->
+    <ul class="navbar-menu">
+      <li><a href="/" class="nav-item"> Home </a></li>
+      <li><a href="/movies" class="nav-item"> Movie </a></li>
+      <li><a href="/reviews" class="nav-item"> Review </a></li>
+      <li><a href="/contact" class="nav-item"> Contact </a></li>
+    </ul>
 
-      <!-- Search Bar -->
-      <div class="search-bar" id="searchBar">
-        <form action="/searchMovie" method="GET" class="search-form">
-          <input
-            id="inputSearch"
-            type="text"
-            name="searchTerm"
-            placeholder="Search ..."
-          />
-          <button type="submit" class="button-search">
-            <img
-              class="search-img"
-              src="../Icon/Search-Icon-Dark1.png"
-              alt=""
-            />
-          </button>
-        </form>
-      </div>
+    <!-- Logo Webpage -->
+    <div class="navbar-logo">
+      <img class="Logo-Dark" src="../Icon/Logo-WebPage.png" width="150px" height="150px" />
+      <img class="Logo-Light" src="../Icon/Logo-WebPage-Light.png" width="150px" height="150px" />
+    </div>
 
-      <!-- EJS -->
-      <% if (loggedInUsername) { %>
-      <div class="logged-in-username" id="loggedInUsername">
-        <%= loggedInUsername %>
-      </div>
-
-      <form action="/logout" method="POST">
-        <button type="submit" class="button-logout" id="logoutButton">
-          Logout
+    <!-- Search Bar -->
+    <div class="search-bar" id="searchBar">
+      <form action="/searchMovie" method="GET" class="search-form">
+        <input id="inputSearch" type="text" name="searchTerm" placeholder="Search ..." />
+        <button type="submit" class="button-search">
+          <img class="search-img" src="../Icon/Search-Icon-Dark1.png" alt="" />
         </button>
       </form>
-      <% } else { %>
+    </div>
 
-      <!-- Show login and register buttons if the user is not logged in -->
-      <button class="button-login" id="loginButton">
-        <a href="/login"> Login </a>
-      </button>
+    <!-- EJS -->
+    <% if (loggedInUsername) { %>
+    <div class="logged-in-username" id="loggedInUsername">
+      <%= loggedInUsername %>
+    </div>
 
-      <button class="button-register" id="registerButton">
-        <a href="/register"> Register </a>
+    <form action="/logout" method="POST">
+      <button type="submit" class="button-logout" id="logoutButton">
+        Logout
       </button>
+    </form>
+    <% } else { %>
+
+    <!-- Show login and register buttons if the user is not logged in -->
+    <button class="button-login" id="loginButton">
+      <a href="/login"> Login </a>
+    </button>
+
+    <button class="button-register" id="registerButton">
+      <a href="/register"> Register </a>
+    </button>
+    <% } %>
+
+    <button class="Button-Mode" onclick="toggleModeAndImage()">
+      <img class="image-Switch" id="imageSwitch" src="../Icon/Dark-mode-1.png" alt="Your Image">
+    </button>
+
+  </div>
+
+  <div class="movie-Genres">
+    <ul>
+      <li class="text-genre">Genre |</li>
+      <% for (let i = 0; i < genres.length; i++) { %>
+      <li>
+        <a href="javascript:void(0);" class="genres-name" data-genre-id="<%= genres[i].genresid %>">
+          <%= genres[i].title %>
+        </a>
+      </li>
       <% } %>
-    </div>
+    </ul>
+  </div>
 
-    <div class="movie-Genres">
-      <ul>
-        <li class="text-genre">Genre |</li>
-        <% for (let i = 0; i < genres.length; i++) { %>
-        <li>
-          <a
-            href="javascript:void(0);"
-            class="genres-name"
-            data-genre-id="<%= genres[i].genresid %>"
-          >
-            <%= genres[i].title %>
-          </a>
-        </li>
-        <% } %>
-      </ul>
-    </div>
-
-    <div class="movie-container" id="movieContainer">
-      <% for (let i = 0; i < movies.length; i++) { %>
-      <div class="movie-list" data-genre-id="<%= movies[i].GenresID %>">
-        <div class="movie-images">
-          <a href="/detailMovie/<%= movies[i].movieid %>">
-            <img src="<%= movies[i].Image %>" alt="" />
-          </a>
-          <div class="title"><%= movies[i].Title %></div>
-        </div>
+  <div class="movie-container" id="movieContainer">
+    <% for (let i = 0; i < movies.length; i++) { %>
+    <div class="movie-list" data-genre-id="<%= movies[i].GenresID %>">
+      <div class="movie-images">
+        <a href="/detailMovie/<%= movies[i].movieid %>">
+          <img src="<%= movies[i].Image %>" alt="" />
+        </a>
+        <div class="title"><%= movies[i].Title %></div>
       </div>
-      <% } %>
     </div>
+    <% } %>
+  </div>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const genresNames = document.querySelectorAll(".genres-name");
-        const movieContainer = document.getElementById("movieContainer");
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const genresNames = document.querySelectorAll(".genres-name");
+      const movieContainer = document.getElementById("movieContainer");
 
-        movieContainer.addEventListener("click", function (event) {
-          const clickedElement = event.target;
+      movieContainer.addEventListener("click", function (event) {
+        const clickedElement = event.target;
 
-          if (clickedElement.classList.contains("movie-images")) {
-            const selectedMovieId =
-              clickedElement.getAttribute("data-movie-id");
-            window.location.href = `/detailMovie/${selectedMovieId}`;
-          }
-        });
+        if (clickedElement.classList.contains("movie-images")) {
+          const selectedMovieId =
+            clickedElement.getAttribute("data-movie-id");
+          window.location.href = `/detailMovie/${selectedMovieId}`;
+        }
+      });
 
-        genresNames.forEach((genreName) => {
-          genreName.addEventListener("click", function () {
-            const selectedGenreId = this.getAttribute("data-genre-id");
+      genresNames.forEach((genreName) => {
+        genreName.addEventListener("click", function () {
+          const selectedGenreId = this.getAttribute("data-genre-id");
 
-            // ส่ง request ไปยัง server เพื่อดึงข้อมูล Movies ที่ตรงกับ selectedGenreId
-            fetch(`/getMoviesByGenre/${selectedGenreId}`)
-              .then((response) => response.json())
-              .then((movies) => {
-                const movieHTML = movies
-                  .map((movie, index) => {
-                    console.log("movie.MoviesID:", movie.MoviesID);
-                    return `
+          // ส่ง request ไปยัง server เพื่อดึงข้อมูล Movies ที่ตรงกับ selectedGenreId
+          fetch(`/getMoviesByGenre/${selectedGenreId}`)
+            .then((response) => response.json())
+            .then((movies) => {
+              const movieHTML = movies
+                .map((movie, index) => {
+                  console.log("movie.MoviesID:", movie.MoviesID);
+                  return `
                                     <div class="movie-list" data-genre-id="${movie.GenresID}">
                                         <div class="movie-images" data-movie-id="${movie.movieid}">
                                             <a href="/detailMovie/${movie.movieid}">
@@ -133,10 +128,10 @@
                                         </div>
                                     </div>
                                 `;
-                  })
-                  .join("");
+                })
+                .join("");
 
-                movieContainer.innerHTML = `
+              movieContainer.innerHTML = `
                             <div class="movie-Genres">
                                 <button class="back-button">
                                     <a href="/movies"> <img src="../Icon/back-button.png" alt=""> </a>
@@ -144,11 +139,12 @@
                             </div>
                                 ${movieHTML}
                         `;
-              })
-              .catch((error) => console.error("Error fetching movies:", error));
-          });
+            })
+            .catch((error) => console.error("Error fetching movies:", error));
         });
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
+
 </html>

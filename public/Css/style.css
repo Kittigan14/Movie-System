@@ -27,11 +27,6 @@
     --bg--purple: #957dad;
 }
 
-body {
-    background: var(--bg--white);
-    transition: all 0.4s ease;
-}
-
 /* Nav bar */
 .navbar {
     width: 100%;
@@ -68,7 +63,13 @@ body {
 
     & .navbar-logo {
         width: 630px;
+        margin-top: 7px;
+        margin-left: 3%;
         text-align: center;
+
+        & .Logo-Light {
+            display: none;
+        }
     }
 
     /* Search bar */
@@ -115,6 +116,27 @@ body {
             }
         }
     }
+
+    & .Button-Mode {
+        width: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+        border: none;
+        background: none;
+
+        & .image-Switch {
+            width: 32px;
+            transition: all 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        & .image-Switch:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 0.5rem rgba(30, 30, 30, 0.598));
+        }
+    }
 }
 
 .button-login,
@@ -140,7 +162,7 @@ body {
 .button-login:hover,
 .button-register:hover,
 .button-logout:hover {
-    transform: scale(1.1);
+    transform: scale(1.04);
     background: #272829;
     color: #ebe8e7;
 
@@ -150,6 +172,7 @@ body {
 }
 
 .logged-in-username {
+    transition: all .5s ease;
     margin: 0 15px;
 }
 
@@ -189,6 +212,7 @@ body {
             text-align: right;
             letter-spacing: 20px;
             position: absolute;
+            transition: all .5s ease;
             right: 2%;
             bottom: 0;
             text-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
@@ -264,7 +288,6 @@ body {
     & input {
         padding: 10px;
         margin-bottom: 15px;
-        /* border: 1px solid #ccc; */
         border-radius: 5px;
         outline: none;
         border: none;
@@ -557,7 +580,7 @@ body {
     }
 }
 
-/* Animation Change Images */
+/* Animation Change Background Color */
 @keyframes fade-color {
     0% {
         background-color: #e0e0f3;
@@ -577,5 +600,129 @@ body {
 
     100% {
         background-color: #e0c7ee;
+    }
+}
+
+/* Dark Mode */
+
+.dark-mode {
+
+    background-color: #3e3c3c;
+
+    .navbar {
+        background: #1a1a1a;
+
+        & .logged-in-username,
+        a {
+            color: #fff;
+        }
+
+        & a:hover {
+            color: #957dad;
+        }
+    }
+
+    .navbar-logo {
+
+        & .Logo-Dark {
+            display: none;
+        }
+
+        & .Logo-Light {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -49%);
+            display: block;
+        }
+
+    }
+
+    .button-login,
+    .button-register,
+    .button-logout {
+        background-color: #fff;
+
+        & a {
+            color: #1a1a1a;
+        }
+    }
+
+    .button-login:hover,
+    .button-register:hover,
+    .button-logout:hover {
+        background: #957dad;
+
+        & a {
+            color: #fff;
+        }
+    }
+
+    .banner-title {
+
+        & h1 {
+            color: #1a1a1a;
+        }
+    }
+
+    .movie-Genres {
+
+        & .text-genre,
+        ul li a {
+            color: #ffffff;
+        }
+
+        & ul li a:hover {
+            color: #957dad;
+        }
+
+    }
+
+    .movie-container .movie-list .movie-images .title {
+        color: #ffffff;
+    }
+
+    .detail-container {
+
+        & .movie-detail {
+            background-color: #3e3c3c;
+
+            & .title-movie-detail,
+            .detailText {
+                color: #ffffff;
+            }
+        }
+    }
+
+    .detail-container .movie-detail .back-movie-detail,
+    .detail-container .movie-detail .review-Movie {
+        background-color: #ffffff;
+    }
+
+    .background-fade-container .fade-background {
+        animation: fade-color-DarkMode 10s infinite;
+    }
+
+}
+
+@keyframes fade-color-DarkMode {
+    0% {
+        background-color: #696969;
+    }
+
+    25% {
+        background-color: #808080;
+    }
+
+    50% {
+        background-color: #A9A9A9;
+    }
+
+    75% {
+        background-color: #C0C0C0;
+    }
+
+    100% {
+        background-color: #D3D3D3;
     }
 }

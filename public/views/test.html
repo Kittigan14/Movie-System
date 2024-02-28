@@ -1,0 +1,46 @@
+<!-- test.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mode and Image Switch</title>
+  <style>
+    body {
+      transition: background-color 0.5s ease;
+    }
+
+    .Button-Mode {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      outline: none;
+      border: none;
+      background: none;
+    }
+
+    .image-Switch {
+      width: 24px;
+      transition: width 0.5s ease, opacity 0.5s ease;
+      cursor: pointer;
+    }
+
+    .dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <button class="Button-Mode" onclick="toggleModeAndImage()">
+    <img class="image-Switch" id="imageSwitch" src="../Icon/Search-Icon-Dark1.png" alt="Your Image">
+  </button>
+
+  <script src="../Script/Dark-Mode.js"></script>
+</body>
+
+</html>
