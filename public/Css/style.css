@@ -64,7 +64,7 @@
     & .navbar-logo {
         width: 630px;
         margin-top: 7px;
-        margin-left: 3%;
+        margin-left: 0.5px;
         text-align: center;
 
         & .Logo-Light {
@@ -494,7 +494,6 @@
             transform: sca
         le(1.06);
         }
-        /* back-button */
 
         & .detailText {
             width: 380px;
